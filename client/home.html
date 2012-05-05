@@ -1,0 +1,68 @@
+<template name="home">
+  {{#if show}}
+  <div class="container">
+    <div class="row">
+      <div class="hero-unit">
+        <h1>Easier communication</h1>
+        <p>A suite of tools aimed at making distributed conversations better.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        <h2>Conversation room</h2>
+        <p>A tool for distributed converstaions</p>
+      </div>
+      <div class="span4">
+        <h2>Join a room now</h2>
+        <p>Enter live conversations</p>
+      </div>
+      <div class="span4">
+        <h2>Get your own!</h2>
+        <p>Learn how to deploy your own instance</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        {{> createRoom }}
+      </div>
+      <div class="span4">
+        <div id="rooms-list" class="well sidebar-nav">
+          {{> rooms_list }}
+        </div>
+      </div>
+      <div class="span4">
+        <p><a class="btn" href="https://github.com/phillc/retrus">Go to documentation &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+    <footer>
+      <p>&copy; <a href="http://phillc.com/">Phillip Campbell</a> 2012 <small>A developer at <a href="http://www.thoughtworks.com/">ThoughtWorks</a></small></p>
+    </footer>
+  </div>
+  {{/if}}
+</template>
+
+<template name="createRoom">
+  <form class="well" action="javascript:void(0)">
+    <legend>Create one now!</legend>
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="new-rooms-name">Name of your room</label>
+        <div class="controls">
+          <input type="text" class="span3" id="new-rooms-name">
+        </div>
+      </div>
+    </fieldset>
+    <button class="btn btn-primary">Start a room &raquo;</button>
+  </form>
+</template>
+
+<template name="rooms_list">
+  <ul class="nav nav-list">
+    {{#each rooms}}
+      <li><a href="javascript:Router.setRoom('{{_id}}');">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</template>
+
