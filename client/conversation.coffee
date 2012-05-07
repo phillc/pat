@@ -15,5 +15,5 @@ Template.thought.value = ->
 
 Template.thought.events =
   'click': ->
-    console.log "foo!!", @attribute
+    Meteor.call 'think', Session.get("currentConversation"), @attribute
 
