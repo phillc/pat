@@ -1,4 +1,7 @@
-Rooms = this.Rooms = new Meteor.Collection("rooms")
+Meteor.publish 'conversations', ->
+  Conversations.find()
 
-Meteor.publish 'rooms', ->
-  Rooms.find()
+Meteor.methods
+  think: (conversation_id, component) ->
+    Conversations.update {  _id: conversation_id }, { $inc: { talk: 1 } }
+

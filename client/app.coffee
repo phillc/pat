@@ -1,38 +1,34 @@
-this.Rooms = new Meteor.Collection("rooms")
-
-Meteor.subscribe 'rooms', ->
+Meteor.subscribe 'conversations', ->
 
 Template.home.show = ->
-  !Session.get "currentRoom"
+  !Session.get "currentConversation"
 
-Template.rooms_list.rooms = ->
-  Rooms.find()
+Template.conversation_list.conversations = ->
+  Conversations.find()
 
-Template.createRoom.events =
+Template.createConversation.events =
   submit: ->
-    id = Rooms.insert
-      name: $("#new-rooms-name").val()
-    console.log id
-    console.log Rooms.find().fetch()
-    Router.setRoom id
+    id = Conversations.insert
+      name: $("#new-conversations-name").val()
+    Router.setConversation id
 
 AppRouter = Backbone.Router.extend
   routes:
     "": "root"
-    "rooms/:rooms_id": "room"
+    "conversations/:conversations_id": "conversation"
 
   root: ->
-    Session.set "currentRoom", null
+    Session.set "currentConversation", null
 
-  room: (room_id) ->
-    Session.set "currentRoom", room_id
+  conversation: (conversation_id) ->
+    Session.set "currentConversation", conversation_id
 
   setHome: ->
     @navigate "", true
-  setRoom: (room_id) ->
-    @navigate "rooms/#{room_id}", true
+  setConversation: (conversation_id) ->
+    @navigate "conversations/#{conversation_id}", true
 
-this.Router = new AppRouter
+window.Router = new AppRouter
 
 Meteor.startup ->
   Backbone.history.start({ pushState: true })

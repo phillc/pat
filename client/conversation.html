@@ -1,0 +1,37 @@
+<template name="conversation">
+  {{#if show}}
+    <div class="container-fluid">
+      <table class="table table-bordered">
+        <colgroup>
+          <col class="span2">
+          <col class="span10">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>You are thinking <a href="#" class="btn btn-mini"><i class="icon-step-backward"></i></a></th>
+            <th>People are thinking</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each thoughts}}
+          {{> thought}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+</template>
+
+<template name="thought">
+  <tr>
+    <td>
+      <a href="#" class="btn btn-mini">{{name}}</a>
+    </td>
+    <td>
+      <div class="progress progress-{{style}} progress-striped active">
+        <div class="bar" style="width: {{value}}%;">{{name}}</div>
+      </div>
+    </td>
+  </tr>
+</template>
+
